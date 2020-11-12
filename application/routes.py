@@ -28,7 +28,8 @@ def deleteteam():
 
 @app.route('/view-players')
 def viewplayers():
-    return render_template('main.html')
+    all_players=Player.query.all()
+    return render_template('viewplayers.html', all_players=all_players)
 
 @app.route('/add-player', methods=['GET','POST'])
 def addplayers():
@@ -41,10 +42,10 @@ def addplayers():
         return redirect(url_for('home'))
     return render_template('addplayer.html', form=form)
 
-@app.route('/update-player')
-def updateplayer():
+@app.route('/update-player/<playerid>')
+def updateplayer(playerid):
     return render_template('main.html')
 
-@app.route('/delete-player')
-def deleteplayer():
+@app.route('/delete-player/<playerid>')
+def deleteplayer(playerid):
     return render_template('main.html')

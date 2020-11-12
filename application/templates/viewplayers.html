@@ -1,0 +1,18 @@
+
+{% block body_content %}
+
+{% for player in all_players %}
+{{ player.name }}
+<br>
+{{ player.kills }}{{ player.deaths }}{{ player.assists }}
+<br>
+{{ player.dpm }}{{ player.gd10 }}
+<br>
+<form action='{{ url_for('deleteplayer', playerid= player.id) }}'>
+	<button>delete</button>
+</form>
+<form action='{{ url_for('updateplayer', playerid= player.id) }}'>
+        <button>update</button>
+</form>
+{% endfor %}
+{% endblock body_content %}

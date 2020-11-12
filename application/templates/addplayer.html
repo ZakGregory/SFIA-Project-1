@@ -1,0 +1,28 @@
+{% block body_content %}
+
+<head>
+    <title>Add a Player</title>
+</head>
+<body>
+    <div class='form'>
+        <form method='POST' action=''>
+	    {{ form.hidden_tag() }}
+            {{ form.name.label }} {{ form.name }}
+            <br>
+	    {{ form.position.label }} {{ form.position }}
+            <br>
+	    {{ form.kills.label }} {{ form.kills }}
+            <br>
+	    {{ form.deaths.label }} {{ form.deaths }}
+            <br>
+	    {{ form.assists.label }} {{ form.assists }}
+            <br>
+	    {{ form.dpm.label }} {{ form.dpm }}
+            <br>
+	    {{ form.gd10.label }} {{ form.gd10 }}
+            <br>
+            {{ form.submit }}
+        </form>
+    </div>
+</body>
+{% endblock body_content %}

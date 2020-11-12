@@ -8,5 +8,5 @@ app.config['SECRET_KEY'] =
 
 db = SQLAlchemy(app)
 
-from application import models
+from application import models, routes
 

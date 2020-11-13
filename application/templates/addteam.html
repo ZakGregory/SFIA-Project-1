@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block body_content %}
+
+<head>
+	<title>Create a Team</title>
+</head>
+<body>
+    <div class='form'>
+        <form method='POST' action=''>
+	    {{ form.hidden_tag() }}
+            {{ form.name.label }} {{ form.name }}
+            <br>
+            {{ form.submit }}
+        </form>
+    </div>
+</body>
+{% endblock body_content %}

@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block body_content %}
+
+{% for team in all_teams %}
+{{ team.name }}
+<br>
+<form action='{{ url_for('deleteteam', teamid= team.id) }}'>
+	<button>delete</button>
+</form>
+<form action='{{ url_for('updateteam', teamid= team.id) }}'>
+        <button>update</button>
+</form>
+{% endfor %}
+{% endblock body_content %}

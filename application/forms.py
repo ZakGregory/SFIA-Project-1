@@ -1,12 +1,21 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SelectField, SubmitField
 
+
 class PlayerForm(FlaskForm):
-    name= StringField('Player\'s in game name')
-    position= StringField('Role')
-    kills= IntegerField('Total kills')
-    deaths= IntegerField('Total deaths')
-    assists= IntegerField('Total assists')
-    dpm= IntegerField('Total damage per minute')
-    gd10= IntegerField('Gold differnce at 10 min')
+    name= StringField('Player\'s In Game Name')
+    position= StringField(a)
+    kills= IntegerField('Total Kills')
+    deaths= IntegerField('Total Deaths')
+    assists= IntegerField('Total Assists')
+    dpm= IntegerField('Total Damage per Minute')
+    gd10= IntegerField('Gold Differnce at 10 Min')
     submit= SubmitField('submit')
+
+class TeamForm(FlaskForm):
+    name= StringField("Team Name")
+'''
+class PickForm(FlaskForm):
+    select=SelectField("", choices=playerlist)
+'''
+

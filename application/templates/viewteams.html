@@ -11,7 +11,7 @@ Player:
 
 {% for player in all_players %}
 
-{% if pick.player_id == player.id %}
+{% if pick.player_id == player.id and pick.team_id == team.id %}
 {{ player.name }}
 <br>
 {% endif %}

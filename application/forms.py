@@ -4,7 +4,7 @@ from wtforms import StringField, IntegerField, SelectField, SubmitField
 
 class PlayerForm(FlaskForm):
     name= StringField('Player\'s In Game Name')
-    position= StringField(a)
+    position= StringField('Position')
     kills= IntegerField('Total Kills')
     deaths= IntegerField('Total Deaths')
     assists= IntegerField('Total Assists')

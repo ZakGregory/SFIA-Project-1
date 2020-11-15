@@ -18,6 +18,6 @@ class Player(db.Model):
 
 class Picks(db.Model):
     pick_id=db.Column(db.Integer, primary_key=True)
-    team_id=db.Column('team_id',db.Integer, db.ForeignKey('team.id'))
-    player_id=db.Column('player_id',db.Integer, db.ForeignKey('player.id'))
+    team_id=db.Column('team_id',db.Integer, db.ForeignKey('team.id',ondelete="CASCADE"))
+    player_id=db.Column('player_id',db.Integer, db.ForeignKey('player.id',ondelete="CASCADE"))
 

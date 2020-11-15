@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request, url_for
 from application import app, db
 from application.models import Team, Player, Picks
-from application.forms import PlayerForm, TeamForm
+from application.forms import PlayerForm, TeamForm, PickForm
 #from sqlalchemy import asc, desc
 
 @app.route('/')
@@ -13,7 +13,9 @@ def home():
 @app.route('/view-teams')
 def viewteams():
     all_teams=Team.query.all()
-    return render_template('viewteams.html', all_teams=all_teams)
+    all_players=Player.query.all()
+    all_picks=Picks.query.all()
+    return render_template('viewteams.html', all_teams=all_teams, all_players=all_players, all_picks=all_picks)
 
 @app.route('/add-team', methods=['GET','POST'])
 def addteam():
@@ -25,14 +27,27 @@ def addteam():
         return redirect(url_for('viewteams'))
     return render_template('addteam.html', form=form)
 
-@app.route('/update-team/<teamid>')
+@app.route('/update-team/<teamid>', methods=['GET','POST'])
 def updateteam(teamid):
-    return render_template('main.html')
+    error=""
+    form=PickForm()
+    if form.validate_on_submit():
+        player=Player.query.filter_by(name=form.name.data).first()
+        if player is None:
+            error="No player found"
+        else:
+            new_pick=Picks(team_id=teamid, player_id=player.id)
+            db.session.add(new_pick)
+            db.session.commit()
+            return redirect(url_for('viewteams'))
+    return render_template('updateteam.html', form=form, error=error)
 
 @app.route('/delete-team/<teamid>')
 def deleteteam(teamid):
     team_to_delete = Team.query.get(teamid)
+    picks_to_delete = Picks.query.filter_by(team_id=teamid).all()
     db.session.delete(team_to_delete)
+
     db.session.commit()
     return redirect(url_for('home'))
 
@@ -80,7 +95,7 @@ def updateplayer(playerid):
     return render_template('main.html')
 
 
-@app.route('/delete-player/<playerid>', methods=['POST'])
+@app.route('/delete-player/<playerid>')
 def deleteplayer(playerid):
     player_to_delete = Player.query.get(playerid)
     db.session.delete(player_to_delete)

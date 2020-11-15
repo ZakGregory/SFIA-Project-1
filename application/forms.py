@@ -14,8 +14,8 @@ class PlayerForm(FlaskForm):
 
 class TeamForm(FlaskForm):
     name= StringField("Team Name")
-'''
+
 class PickForm(FlaskForm):
-    select=SelectField("", choices=playerlist)
-'''
+    name=StringField('Enter a Player')
+
 

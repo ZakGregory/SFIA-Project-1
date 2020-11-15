@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block body_content %}
+
+<head>
+	<title>Upadate Team</title>
+</head>
+<body>
+Add a player to your team.
+    <div class='form'>
+        <form method='POST' action=''>
+	    {{ form.hidden_tag() }}
+            {{ form.name.label }} {{ form.name }}
+            <br>
+            {{ form.submit }}
+        </form>
+    </div>
+{{ error }}
+</body>
+{% endblock body_content %}

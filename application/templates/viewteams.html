@@ -5,6 +5,20 @@
 {% for team in all_teams %}
 {{ team.name }}
 <br>
+Player:
+<br>
+{% for pick in all_picks %}
+
+{% for player in all_players %}
+
+{% if pick.player_id == player.id %}
+{{ player.name }}
+<br>
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+<br>
 <form action='{{ url_for('deleteteam', teamid= team.id) }}'>
 	<button>delete</button>
 </form>

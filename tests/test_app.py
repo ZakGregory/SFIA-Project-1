@@ -3,7 +3,7 @@ from flask import url_for
 from flask_testing import TestCase
 
 from application import app, db
-from application.models import Player
+from application.models import Player, Team
 
 
 class TestBase(TestCase):
@@ -17,7 +17,9 @@ class TestBase(TestCase):
     def setUp(self):
         db.create_all()
         test_player=Player(name="test", position="top")
+        test_team=Team(name="test")
         db.session.add(test_player)
+        db.session.add(test_team)
         db.session.commit()
 
     def tearDown(self):
@@ -37,7 +39,26 @@ class TestViews(TestBase):
         response = self.client.get(url_for('updateplayer',playerid=1))
         self.assertEqual(response.status_code, 200)
 
+    def test_addplayer_get(self):
+        response = self.client.get(url_for('addplayer'))
+        self.assertEqual(response.status_code, 200)
+
     def test_deleteplayer_get(self):
         response = self.client.get(url_for('deleteplayer',playerid=1))
-        self.assertEqual(response.status_code,405)
+        self.assertEqual(response.status_code,302)
 
+    def test_viewteams_get(self):
+        response = self.client.get(url_for('viewteams'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_updateteam_get(self):
+        response = self.client.get(url_for('updateteam',teamid=1))
+        self.assertEqual(response.status_code, 200)
+
+    def test_addteam_get(self):
+        response = self.client.get(url_for('addteam'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_deleteteam_get(self):
+        response = self.client.get(url_for('deleteteam',teamid=1))
+        self.assertEqual(response.status_code,302)

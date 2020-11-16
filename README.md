@@ -50,7 +50,8 @@ Jenkins is used to build and deploy the app, building on git pushes, and being h
 
 The Pytest package is used to test the functionality of the code using asserst to see if the code is behaving correctly. Using the --cov flag can show the number of lines
 which are tested, and the percentage of the overall app. Using test to check the status codes thrown by visiting each page, we can check each page is behaiving correctly.
-Using the current tests, the App is X% tested.
+Using the current tests, the App is 82% tested. The test builds a seprate version of the app with a temporary database stored in memory so that no data in the main database is effected.
+It creates a test team and player and checks to see if each page is accessible and data is updated on the database.
 
 ### Future Improvments
 
